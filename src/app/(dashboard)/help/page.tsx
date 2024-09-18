@@ -1,3 +1,3 @@
 export default function Page() {
-  return <h1>Dash Board!</h1>
+  return <h1>Help page!</h1>
 }

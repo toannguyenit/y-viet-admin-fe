@@ -9,6 +9,7 @@ import type { VerticalMenuContextProps } from '@menu/components/vertical-menu/Me
 
 // Component Imports
 import { Menu, MenuItem } from '@menu/vertical-menu'
+import MenuSection from '@menu/vertical-menu/MenuSection' // Assuming MenuSection is imported from the same module
 
 // Hook Imports
 import useVerticalNav from '@menu/hooks/useVerticalNav'
@@ -24,6 +25,8 @@ type RenderExpandIconProps = {
   open?: boolean
   transitionDuration?: VerticalMenuContextProps['transitionDuration']
 }
+
+import verticalMenuData from '@/data/navigation/verticalMenuData'
 
 type Props = {
   scrollMenu: (container: any, isPerfectScrollbar: boolean) => void
@@ -68,12 +71,17 @@ const VerticalMenu = ({ scrollMenu }: Props) => {
         renderExpandedMenuItemIcon={{ icon: <i className='ri-circle-line' /> }}
         menuSectionStyles={menuSectionStyles(verticalNavOptions, theme)}
       >
-        <MenuItem href='/home' icon={<i className='ri-home-smile-line' />}>
+        {verticalMenuData().map(navItem => (
+          <MenuItem key={navItem.href} href={navItem.href} icon={<i className={navItem.icon} />}>
+            {navItem.label}
+          </MenuItem>
+        ))}
+        {/* <MenuItem href='/home' icon={<i className='ri-home-smile-line' />}>
           Home
         </MenuItem>
         <MenuItem href='/about' icon={<i className='ri-information-line' />}>
           About
-        </MenuItem>
+        </MenuItem> */}
       </Menu>
       {/* <Menu
         popoutMenuOffset={{ mainAxis: 10 }}
