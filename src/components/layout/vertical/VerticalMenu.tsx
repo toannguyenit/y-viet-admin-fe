@@ -30,7 +30,7 @@ type RenderExpandIconProps = {
   transitionDuration?: VerticalMenuContextProps['transitionDuration']
 }
 
-import verticalMenuData from '@/data/navigation/verticalMenuData'
+import verticalMenuData, { VerticalMenuDataType } from '@/data/navigation/verticalMenuData'
 
 type Props = {
   dictionary: Awaited<ReturnType<typeof getDictionary>>
@@ -91,17 +91,15 @@ const VerticalMenu = ({ dictionary, scrollMenu }: Props) => {
           <MenuItem href={`/${locale}/dashboards/logistics`}>{dictionary['navigation'].logistics}</MenuItem>
         </SubMenu> */}
 
-        {verticalMenuData().map(navItem => (
-          <MenuItem key={navItem.href} href={navItem.href} icon={<i className={navItem.icon} />}>
-            {navItem.label}
+        {/* {verticalMenuData().map((navItem: VerticalMenuDataType) => (
+          <MenuItem key={navItem.href} href={`/${locale}/${navItem.href}`} icon={<i className={navItem.icon} />}>
+            {dictionary['navigation'][navItem.label as keyof (typeof dictionary)['navigation']]}
           </MenuItem>
-        ))}
-        {/* <MenuItem href='/home' icon={<i className='ri-home-smile-line' />}>
-          Home
-        </MenuItem>
-        <MenuItem href='/about' icon={<i className='ri-information-line' />}>
-          About
-        </MenuItem> */}
+        ))} */}
+        <SubMenu label={dictionary['navigation'].clinicsManagement} icon={<i className='ri-user-line' />}>
+          <MenuItem href={`/${locale}/clinics-management/list`}>{dictionary['navigation'].list}</MenuItem>
+          <MenuItem href={`/${locale}/clinics-management/view`}>{dictionary['navigation'].view}</MenuItem>
+        </SubMenu>
       </Menu>
       {/* <Menu
         popoutMenuOffset={{ mainAxis: 10 }}
