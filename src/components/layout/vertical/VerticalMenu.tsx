@@ -31,10 +31,10 @@ type RenderExpandIconProps = {
 }
 
 import verticalMenuData from '@/data/navigation/verticalMenuData'
+import type { VerticalMenuDataType } from '@/data/navigation/verticalMenuData'
 
 type Props = {
   dictionary: Awaited<ReturnType<typeof getDictionary>>
-
   scrollMenu: (container: any, isPerfectScrollbar: boolean) => void
 }
 
@@ -79,29 +79,21 @@ const VerticalMenu = ({ dictionary, scrollMenu }: Props) => {
         renderExpandedMenuItemIcon={{ icon: <i className='ri-circle-line' /> }}
         menuSectionStyles={menuSectionStyles(verticalNavOptions, theme)}
       >
-        {/* <SubMenu
-          label={dictionary['navigation'].dashboards}
-          icon={<i className='ri-home-smile-line' />}
-          suffix={<Chip label='5' size='small' color='error' />}
-        >
-          <MenuItem href={`/${locale}/dashboards/crm`}>{dictionary['navigation'].crm}</MenuItem>
-          <MenuItem href={`/${locale}/dashboards/analytics`}>{dictionary['navigation'].analytics}</MenuItem>
-          <MenuItem href={`/${locale}/dashboards/ecommerce`}>{dictionary['navigation'].eCommerce}</MenuItem>
-          <MenuItem href={`/${locale}/dashboards/academy`}>{dictionary['navigation'].academy}</MenuItem>
-          <MenuItem href={`/${locale}/dashboards/logistics`}>{dictionary['navigation'].logistics}</MenuItem>
-        </SubMenu> */}
-
-        {verticalMenuData().map(navItem => (
-          <MenuItem key={navItem.href} href={navItem.href} icon={<i className={navItem.icon} />}>
-            {navItem.label}
-          </MenuItem>
-        ))}
-        {/* <MenuItem href='/home' icon={<i className='ri-home-smile-line' />}>
-          Home
-        </MenuItem>
-        <MenuItem href='/about' icon={<i className='ri-information-line' />}>
-          About
-        </MenuItem> */}
+        {verticalMenuData(dictionary).map((navItem: VerticalMenuDataType) =>
+          navItem.children && navItem.children.length > 0 ? (
+            <SubMenu key={navItem.label} label={navItem.label} icon={<i className={navItem.icon} />}>
+              {navItem.children.map((child: any) => (
+                <MenuItem key={child.label} href={`/${locale}/${navItem.folder}/${child.href}`}>
+                  {child.label}
+                </MenuItem>
+              ))}
+            </SubMenu>
+          ) : (
+            <MenuItem key={navItem.label} href={`/${locale}/${navItem.href}`} icon={<i className={navItem.icon} />}>
+              {navItem.label}
+            </MenuItem>
+          )
+        )}
       </Menu>
       {/* <Menu
         popoutMenuOffset={{ mainAxis: 10 }}

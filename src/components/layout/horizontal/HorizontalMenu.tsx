@@ -90,13 +90,19 @@ const HorizontalMenu = ({ dictionary }: { dictionary: Awaited<ReturnType<typeof 
           menuSectionStyles: verticalMenuSectionStyles(verticalNavOptions, theme)
         }}
       >
+        <MenuItem href={`/${locale}/home`} icon={<i className='ri-home-smile-line' />}>
+          {dictionary['navigation'].home}
+        </MenuItem>
+        <MenuItem href={`/${locale}/about`} icon={<i className='ri-information-line' />}>
+          {dictionary['navigation'].about}
+        </MenuItem>
         {/* <MenuItem href='/' icon={<i className='ri-home-smile-line' />}>
           Home
         </MenuItem>
         <MenuItem href='/about' icon={<i className='ri-information-line' />}>
           About
         </MenuItem> */}
-        <SubMenu label={dictionary['navigation'].dashboards} icon={<i className='ri-home-smile-line' />}>
+        {/* <SubMenu label={dictionary['navigation'].dashboards} icon={<i className='ri-home-smile-line' />}>
           <MenuItem href={`/${locale}/dashboards/crm`} icon={<i className='ri-pie-chart-2-line' />}>
             {dictionary['navigation'].crm}
           </MenuItem>
@@ -112,7 +118,7 @@ const HorizontalMenu = ({ dictionary }: { dictionary: Awaited<ReturnType<typeof 
           <MenuItem href={`/${locale}/dashboards/logistics`} icon={<i className='ri-car-line' />}>
             {dictionary['navigation'].logistics}
           </MenuItem>
-        </SubMenu>
+        </SubMenu> */}
       </Menu>
 
       {/* <Menu

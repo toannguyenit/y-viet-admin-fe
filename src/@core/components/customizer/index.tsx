@@ -52,6 +52,7 @@ type CustomizerProps = {
   breakpoint?: Breakpoint | 'xxl' | `${number}px` | `${number}rem` | `${number}em`
   dir?: Direction
   disableDirection?: boolean
+  lang: Locale
 }
 
 const getLocalePath = (pathName: string, locale: string) => {
@@ -96,7 +97,7 @@ const DebouncedColorPicker = (props: DebouncedColorPickerProps) => {
   )
 }
 
-const Customizer = ({ breakpoint = 'lg', dir = 'ltr', disableDirection = false }: CustomizerProps) => {
+const Customizer = ({ breakpoint = 'lg', dir = 'ltr', disableDirection = false, lang }: CustomizerProps) => {
   // States
   const [isOpen, setIsOpen] = useState(false)
   const [direction, setDirection] = useState(dir)
@@ -446,7 +447,7 @@ const Customizer = ({ breakpoint = 'lg', dir = 'ltr', disableDirection = false }
                       <div className='flex flex-col items-start gap-0.5'>
                         <div
                           className={classnames(styles.itemWrapper, {
-                            [styles.active]: direction === 'ltr'
+                            [styles.active]: lang === 'en'
                           })}
                         >
                           <DirectionLtr />
@@ -457,18 +458,19 @@ const Customizer = ({ breakpoint = 'lg', dir = 'ltr', disableDirection = false }
                         </p>
                       </div>
                     </Link>
-                    <Link href={getLocalePath(pathName, 'ar')}>
+
+                    <Link href={getLocalePath(pathName, 'vi')}>
                       <div className='flex flex-col items-start gap-0.5'>
                         <div
                           className={classnames(styles.itemWrapper, {
-                            [styles.active]: direction === 'rtl'
+                            [styles.active]: lang === 'vi'
                           })}
                         >
-                          <DirectionRtl />
+                          <DirectionLtr />
                         </div>
                         <p className={styles.itemLabel}>
-                          Right to Left <br />
-                          (Arabic)
+                          Left to Right <br />
+                          (Tiếng Việt)
                         </p>
                       </div>
                     </Link>

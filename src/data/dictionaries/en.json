@@ -1,16 +1,13 @@
 {
   "navigation": {
     "home": "Home",
-    "appointmentsManagement": "Appointments Management",
-    "clinics-management": "Home",
-    "home": "Home",
-    "home": "Home",
-    "home": "Home",
-    "home": "Home",
-    "home": "Home",
-    "home": "Home",
-    "home": "Home",
-    "dashboards": "Dashboards",
+    "about": "About",
+    "appointmentsManagement": "Appointments",
+    "clinicsManagement": "Clinics",
+    "doctorClinicsManagement": "Doctor-Clinics",
+    "patientsManagement": "Patients",
+    "visitsManagement": "Visits",
+    "help": "Help",
     "crm": "CRM",
     "analytics": "Analytics",
     "eCommerce": "eCommerce",
@@ -111,5 +108,8 @@
     "menuLevel2": "Menu Level 2",
     "menuLevel3": "Menu Level 3",
     "disabledMenu": "Disabled Menu"
+  },
+  "body": {
+    "clinics": "Clinics"
   }
 }

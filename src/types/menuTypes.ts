@@ -23,6 +23,7 @@ export type VerticalMenuItemDataType = Omit<
 > &
   MenuItemExactMatchUrlProps & {
     label: ReactNode
+    folder?: string
     excludeLang?: boolean
     icon?: string
     prefix?: ReactNode | ChipProps
